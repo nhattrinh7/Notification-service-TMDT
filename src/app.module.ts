@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import Joi from 'joi'
-import { UserModule } from '~/users/user.module'
 import { TemplateModule } from '~/templates/templates.module'
+import { UserModule } from '~/users/user.module'
+import { ShopModule } from '~/shop/shop.module'
 
 @Module({
   imports: [
@@ -16,8 +17,9 @@ import { TemplateModule } from '~/templates/templates.module'
         abortEarly: true,
       },
     }),
-    UserModule,
     TemplateModule,
+    UserModule,
+    ShopModule,
   ],
   controllers: [],
   providers: [],

@@ -5,7 +5,7 @@ import { TemplateService } from '~/templates/templates.service'
 import { BaseRetryConsumer } from '~/utils/base-retry.consumer'
 
 @Controller()
-export class UserController extends BaseRetryConsumer {
+export class ShopController extends BaseRetryConsumer {
   constructor(
     private readonly resendService: ResendService,
     private readonly templateService: TemplateService,
@@ -13,43 +13,40 @@ export class UserController extends BaseRetryConsumer {
     super()
   }
 
-  @EventPattern('user.created')
-  async handleUserCreated(
+  @EventPattern('shop.approved')
+  async handleShopApproved(
     @Payload() data: any, 
     @Ctx() context: RmqContext
   ) {
-    console.log('Event user.created received:', data)
+    console.log('Event shop.approved received:', data)
     await this.handleWithRetry(context, async () => {
-      // Giả lập lỗi - comment code gửi email thật
-      // throw new Error('Simulated email service error')
-      const html = this.templateService.render('verification-email', {
-        otp: data.emailVerifyOtp,
-        expiresIn: data.emailVerifyOtpExpire,
+      const html = this.templateService.render('shop-approved', {
+        shopName: data.shopName,
       })
 
       await this.resendService.sendEmail({
         to: data.email,
-        subject: 'Welcome to Our Website!',
+        subject: 'Chúc mừng! Shop của bạn đã được phê duyệt',
         html: html,
       })
     })
   }
 
-  @EventPattern('send_passcode_reset_otp')
-  async handlePasscodeResetOtp(
-    @Payload() data: { email: string; otp: string; expiryMinutes: string },
+  @EventPattern('shop.rejected')
+  async handleShopRejected(
+    @Payload() data: any, 
     @Ctx() context: RmqContext
   ) {
-    console.log('Event send_passcode_reset_otp received:', data)
+    console.log('Event shop.rejected received:', data)
     await this.handleWithRetry(context, async () => {
-      const html = this.templateService.render('passcode-reset-otp', {
-        otp: data.otp,
-        expiryMinutes: data.expiryMinutes,
+      const html = this.templateService.render('shop-rejected', {
+        shopName: data.shopName,
+        rejectReason: data.rejectReason,
       })
 
       await this.resendService.sendEmail({
         to: data.email,
-        subject: 'Mã OTP đặt lại Passcode - SZONE',
+        subject: 'Rất tiếc! Shop của bạn đã bị từ chối',
         html: html,
       })
     })

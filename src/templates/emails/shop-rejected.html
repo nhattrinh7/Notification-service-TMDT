@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Rejected</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7fa;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="max-width: 600px; margin: 40px auto;">
+    <tr>
+      <td style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); padding: 40px 30px; border-radius: 16px 16px 0 0; text-align: center;">
+        <div style="font-size: 48px; margin-bottom: 10px;">😔</div>
+        <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: 600;">
+          Rất Tiếc! Shop Của Bạn Chưa Được Phê Duyệt
+        </h1>
+      </td>
+    </tr>
+    <tr>
+      <td style="background-color: #ffffff; padding: 40px 30px;">
+        <p style="color: #374151; font-size: 16px; line-height: 1.6; margin: 0 0 30px;">
+          Chúng tôi rất tiếc phải thông báo rằng shop <strong>{{shopName}}</strong> của bạn chưa được phê duyệt.
+        </p>
+        
+        <div style="background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); border-left: 4px solid #ef4444; border-radius: 12px; padding: 24px; margin-bottom: 30px;">
+          <h2 style="color: #991b1b; font-size: 18px; margin: 0 0 15px; font-weight: 600;">
+            📋 Thông Tin Shop
+          </h2>
+          <table style="width: 100%;">
+            <tr>
+              <td style="color: #6b7280; font-size: 14px; padding: 8px 0;">Tên Shop:</td>
+              <td style="color: #374151; font-size: 14px; font-weight: 600; padding: 8px 0; text-align: right;">{{shopName}}</td>
+            </tr>
+            <tr>
+              <td style="color: #6b7280; font-size: 14px; padding: 8px 0;">Trạng Thái:</td>
+              <td style="color: #ef4444; font-size: 14px; font-weight: 600; padding: 8px 0; text-align: right;">✗ Bị Từ Chối</td>
+            </tr>
+          </table>
+        </div>
+
+        <div style="background-color: #fff7ed; border-left: 4px solid #f59e0b; border-radius: 12px; padding: 24px; margin-bottom: 30px;">
+          <h3 style="color: #92400e; font-size: 16px; margin: 0 0 15px; font-weight: 600;">
+            ⚠️ Lý Do Từ Chối
+          </h3>
+          <p style="color: #78350f; font-size: 14px; line-height: 1.8; margin: 0;">
+            {{rejectReason}}
+          </p>
+        </div>
+
+        <div style="background-color: #f3f4f6; border-radius: 12px; padding: 24px; margin-bottom: 30px;">
+          <h3 style="color: #374151; font-size: 16px; margin: 0 0 15px; font-weight: 600;">
+            🔄 Bước Tiếp Theo
+          </h3>
+          <ul style="color: #6b7280; font-size: 14px; line-height: 1.8; margin: 0; padding-left: 20px;">
+            <li>Xem xét kỹ lý do từ chối ở trên</li>
+            <li>Cập nhật thông tin shop theo yêu cầu</li>
+            <li>Đảm bảo tuân thủ các quy định của nền tảng</li>
+            <li>Gửi lại yêu cầu phê duyệt sau khi đã chỉnh sửa</li>
+          </ul>
+        </div>
+
+        <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 30px 0;">
+        
+        <p style="color: #6b7280; font-size: 14px; line-height: 1.6; margin: 0 0 10px;">
+          💡 <strong>Lưu ý:</strong> Hãy đọc kỹ các điều khoản và chính sách của chúng tôi trước khi gửi lại yêu cầu.
+        </p>
+        
+        <p style="color: #9ca3af; font-size: 13px; line-height: 1.6; margin: 0; text-align: center;">
+          Nếu bạn có bất kỳ câu hỏi nào, vui lòng liên hệ với đội ngũ hỗ trợ của chúng tôi.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td style="background-color: #f9fafb; padding: 24px 30px; border-radius: 0 0 16px 16px; text-align: center;">
+        <p style="color: #9ca3af; font-size: 12px; margin: 0 0 8px;">
+          © 2025 SZONE. All rights reserved.
+        </p>
+        <p style="color: #9ca3af; font-size: 11px; margin: 0;">
+          Email này được gửi tự động, vui lòng không trả lời email này.
+        </p>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
