@@ -18,8 +18,9 @@ export class UserController extends BaseRetryConsumer {
     @Payload() data: any, 
     @Ctx() context: RmqContext
   ) {
-    console.log('Event user.created received:', data)
+    console.log(data)
     await this.handleWithRetry(context, async () => {
+      this.logger.log(`Event user.created received ${data}`)
       // Giả lập lỗi - comment code gửi email thật
       // throw new Error('Simulated email service error')
       const html = this.templateService.render('verification-email', {
@@ -40,8 +41,8 @@ export class UserController extends BaseRetryConsumer {
     @Payload() data: { email: string; otp: string; expiryMinutes: string },
     @Ctx() context: RmqContext
   ) {
-    console.log('Event send_passcode_reset_otp received:', data)
     await this.handleWithRetry(context, async () => {
+      this.logger.log(`Event send_passcode_reset_otp received`)
       const html = this.templateService.render('passcode-reset-otp', {
         otp: data.otp,
         expiryMinutes: data.expiryMinutes,

@@ -18,8 +18,8 @@ export class ShopController extends BaseRetryConsumer {
     @Payload() data: any, 
     @Ctx() context: RmqContext
   ) {
-    console.log('Event shop.approved received:', data)
     await this.handleWithRetry(context, async () => {
+      this.logger.log(`Event shop.approved received`)
       const html = this.templateService.render('shop-approved', {
         shopName: data.shopName,
       })
@@ -37,8 +37,8 @@ export class ShopController extends BaseRetryConsumer {
     @Payload() data: any, 
     @Ctx() context: RmqContext
   ) {
-    console.log('Event shop.rejected received:', data)
     await this.handleWithRetry(context, async () => {
+      this.logger.log(`Event shop.rejected received`)
       const html = this.templateService.render('shop-rejected', {
         shopName: data.shopName,
         rejectReason: data.rejectReason,
