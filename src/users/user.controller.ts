@@ -55,4 +55,24 @@ export class UserController extends BaseRetryConsumer {
       })
     })
   }
+
+  @EventPattern('send_password_reset_otp')
+  async handlePasswordResetOtp(
+    @Payload() data: { email: string; otp: string; expiryMinutes: string },
+    @Ctx() context: RmqContext
+  ) {
+    await this.handleWithRetry(context, async () => {
+      this.logger.log('Event send_password_reset_otp received')
+      const html = this.templateService.render('password-reset-otp', {
+        otp: data.otp,
+        expiryMinutes: data.expiryMinutes,
+      })
+
+      await this.resendService.sendEmail({
+        to: data.email,
+        subject: 'Mã OTP đặt lại mật khẩu - SZONE',
+        html: html,
+      })
+    })
+  }
 }
