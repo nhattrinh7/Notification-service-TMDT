@@ -9,10 +9,16 @@ import { RequestLoggingMiddleware } from '~/common/middleware/request-logging.mi
 @Module({
   imports: [
     ConfigModule.forRoot({
+      envFilePath: `.env.${process.env.NODE_ENV || 'development'}`,      
       isGlobal: true,
       validationSchema: Joi.object({
         RESEND_API_KEY: Joi.string().required(),
         RESEND_SENDER_EMAIL: Joi.string().required(),
+      
+        SERVICE_NAME: Joi.string().required(),
+        SERVICE_HOST: Joi.string().required(),
+        PORT: Joi.number().required(),
+        RABBITMQ_HOST: Joi.string().required(),
       }),
       validationOptions: {
         abortEarly: true,
